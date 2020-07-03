@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Code Quiz</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <body>
+        <h1 id = "highscores" style="float: left;">View Highscores</h1>
+        <h1 style="float: right;" id="timeLeft">Time Left: 0</h1>
+        <div class="container">
+            <div id="quizStart" style="clear: both; text-align: center;">
+                <br><br><br>
+                <h1 id="quizHeader">Coding Quiz Challenge</h1>
+                <p id="quizPrompt">This is a coding quiz. You'll be timed.</p>
+                <button id="startButton">Start Quiz</button>
+                <div>
+                    <div id="answerOneDiv"></div>
+                    <br>
+                    <div id="answerTwoDiv"></div>
+                    <br>
+                    <div id="answerThreeDiv"></div>
+                    <br>
+                    <div id="answerFourDiv"></div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <script>
+        var timerEl = document.querySelector('#timeLeft');
+        var quizStartButton = document.querySelector('#startButton');
+        var viewHighscores = document.querySelector('#highscores');
+        var quizStartDiv = document.querySelector('#quizStart');
+        var quizHeader = document.querySelector('#quizHeader');
+        var quizPrompt = document.querySelector('#quizPrompt');
+        var quizQuestionsDiv = document.querySelector('#quizQuestions');
+        var answerOneDiv = document.querySelector('#answerOneDiv');
+        var answerTwoDiv = document.querySelector('#answerTwoDiv');
+        var answerThreeDiv = document.querySelector('#answerThreeDiv');
+        var answerFourDiv = document.querySelector('#answerFourDiv');
+        var answerOne = document.createElement('button');
+        var answerTwo = document.createElement('button');
+        var answerThree = document.createElement('button');
+        var answerFour = document.createElement('button');
+        var hr = document.createElement('hr');
+        var rightOrWrong = document.createElement('p');
+        var timeLeft = 100;
+
+        // this allows you to click on "view highscores" and view the high scores.
+        viewHighscores.addEventListener('click', function(event){
+            // var tag = document.createElement("p");
+            // tag.textContent = "These are the high scores!";
+            // quizStartDiv.appendChild(tag);
+            // go to high scores
+        });
+        
+        // when the wrong answer is chosen, 10 seconds is taken off the timer.
+        
+        function quizTimer() {
+            timeLeft = 100;
+            var timeInterval = setInterval(countDown, 1000);
+
+            function countDown() {
+                timerEl.textContent = `Time Left: ${timeLeft}`;
+                timeLeft--;
+
+                if (timeLeft <= 0) {
+                    timerEl.textContent = "Time Left: 0";
+                    clearInterval(timeInterval);
+                }
+            }
+        }
+        
+        // When the "Start Quiz" button is pressed, the timer starts.
+        quizStartButton.addEventListener('click', function(event){
+            quizTimer();
+            quizPrompt.remove();
+            quizStartButton.remove();
+            quizHeader.textContent = "Commonly used data types DO NOT include:";
+            answerOne.textContent = "strings";
+            answerTwo.textContent = "booleans";
+            answerThree.textContent = "alerts";
+            answerFour.textContent = "numbers";
+            answerOneDiv.appendChild(answerOne);
+            answerTwoDiv.appendChild(answerTwo);
+            answerThreeDiv.appendChild(answerThree);
+            answerFourDiv.appendChild(answerFour);
+        });
+
+        function answerOneFunction(items){
+            items.addEventListener('click', function(event){
+            if (items.textContent === "alerts"){
+                quizStartDiv.appendChild(hr);
+                rightOrWrong.textContent = "Right!"
+                quizStartDiv.appendChild(rightOrWrong);
+            } else {
+                quizStartDiv.appendChild(hr);
+                rightOrWrong.textContent = "Wrong!"
+                quizStartDiv.appendChild(rightOrWrong);
+                timeLeft = timeLeft - 10;
+            }  
+            quizHeader.textContent = "What is your birthday?";
+            answerOne.textContent = "3/28/1995";
+            answerTwo.textContent = "7/24/1995";
+            answerThree.textContent = "1/5/1995";
+            answerFour.textContent = "10/6/2007";
+            });
+        }
+        
+        answerOneFunction(answerOne);
+        answerOneFunction(answerTwo);
+        answerOneFunction(answerThree);
+        answerOneFunction(answerFour);
+
+       
+
+        // answerTwo.addEventListener('click', function(event){
+        //     quizHeader.textContent = "What is your birthday?";
+        //     answerOne.textContent = "3/28/1995";
+        //     answerTwo.textContent = "7/24/1995";
+        //     answerThree.textContent = "1/5/1995";
+        //     answerFour.textContent = "10/6/2007";
+        // });
+
+        // answerThree.addEventListener('click', function(event){
+        //     quizHeader.textContent = "What is your birthday?";
+        //     answerOne.textContent = "3/28/1995";
+        //     answerTwo.textContent = "7/24/1995";
+        //     answerThree.textContent = "1/5/1995";
+        //     answerFour.textContent = "10/6/2007";
+        // });
+
+        // answerFour.addEventListener('click', function(event){
+        //     quizHeader.textContent = "What is your birthday?";
+        //     answerOne.textContent = "3/28/1995";
+        //     answerTwo.textContent = "7/24/1995";
+        //     answerThree.textContent = "1/5/1995";
+        //     answerFour.textContent = "10/6/2007";
+        // });
+        
+
+    </script>
+</html>
