@@ -46,6 +46,7 @@
         var answerFour = document.createElement('button');
         var hr = document.createElement('hr');
         var rightOrWrong = document.createElement('p');
+        var rightAnswers = ["alerts", "parentheses"];
         var timeLeft = 100;
 
         // this allows you to click on "view highscores" and view the high scores.
@@ -89,9 +90,9 @@
             answerFourDiv.appendChild(answerFour);
         });
 
-        function answerOneFunction(items){
+        function answerFunction(items){
             items.addEventListener('click', function(event){
-            if (items.textContent === "alerts"){
+            if (items.textContent === "alerts" || items.textContent === "parentheses"){
                 quizStartDiv.appendChild(hr);
                 rightOrWrong.textContent = "Right!"
                 quizStartDiv.appendChild(rightOrWrong);
@@ -101,44 +102,77 @@
                 quizStartDiv.appendChild(rightOrWrong);
                 timeLeft = timeLeft - 10;
             }  
-            quizHeader.textContent = "What is your birthday?";
-            answerOne.textContent = "3/28/1995";
-            answerTwo.textContent = "7/24/1995";
-            answerThree.textContent = "1/5/1995";
-            answerFour.textContent = "10/6/2007";
+            functionQuestionTwo();
             });
         }
-        
-        answerOneFunction(answerOne);
-        answerOneFunction(answerTwo);
-        answerOneFunction(answerThree);
-        answerOneFunction(answerFour);
 
-       
+        answerFunction(answerOne);
+        answerFunction(answerTwo);
+        answerFunction(answerThree);
+        answerFunction(answerFour);
 
-        // answerTwo.addEventListener('click', function(event){
-        //     quizHeader.textContent = "What is your birthday?";
-        //     answerOne.textContent = "3/28/1995";
-        //     answerTwo.textContent = "7/24/1995";
-        //     answerThree.textContent = "1/5/1995";
-        //     answerFour.textContent = "10/6/2007";
-        // });
+        function functionQuestionOne(){
+            quizHeader.textContent = "The condition in an if/else statement is enclosed within _________";
+            answerOne.textContent = "quotes";
+            answerTwo.textContent = "curly brackets";
+            answerThree.textContent = "parentheses";
+            answerFour.textContent = "square brackets";
+        }
+        function functionQuestionTwo(){
+            quizHeader.textContent = "The condition in an if/else statement is enclosed within _________";
+            answerOne.textContent = "quotes";
+            answerTwo.textContent = "parentheses";
+            answerThree.textContent = "curly brackets";
+            answerFour.textContent = "square brackets";
+        }
+        function functionQuestionThree(){
+            quizHeader.textContent = "Arrays in JavaScript can be used to store:";
+            answerOne.textContent = "numbers and strings";
+            answerTwo.textContent = "other arrays";
+            answerThree.textContent = "booleans";
+            answerFour.textContent = "all of the above";
+        }
+        function functionQuestionFour(){
+            quizHeader.textContent = "String values must be enclosed with __________ when being assigned to variables.";
+            answerOne.textContent = "commas";
+            answerTwo.textContent = "curly brackets";
+            answerThree.textContent = "quotes";
+            answerFour.textContent = "parentheses";
+        }
+        function functionQuestionFive(){
+            quizHeader.textContent = "A very useful tool used during development and debugging for printing content to the debugger is:";
+            answerOne.textContent = "JavaScript";
+            answerTwo.textContent = "terminal/bash";
+            answerThree.textContent = "for loops";
+            answerFour.textContent = "console log";
+        }
 
-        // answerThree.addEventListener('click', function(event){
-        //     quizHeader.textContent = "What is your birthday?";
-        //     answerOne.textContent = "3/28/1995";
-        //     answerTwo.textContent = "7/24/1995";
-        //     answerThree.textContent = "1/5/1995";
-        //     answerFour.textContent = "10/6/2007";
-        // });
 
-        // answerFour.addEventListener('click', function(event){
-        //     quizHeader.textContent = "What is your birthday?";
-        //     answerOne.textContent = "3/28/1995";
-        //     answerTwo.textContent = "7/24/1995";
-        //     answerThree.textContent = "1/5/1995";
-        //     answerFour.textContent = "10/6/2007";
-        // });
+
+        // function answerTwoFunction(items){
+        //     items.addEventListener('click', function(event){
+        //     if (items.textContent === "parentheses"){
+        //         quizStartDiv.appendChild(hr);
+        //         rightOrWrong.textContent = "Right!"
+        //         quizStartDiv.appendChild(rightOrWrong);
+        //     } else {
+        //         quizStartDiv.appendChild(hr);
+        //         rightOrWrong.textContent = "Wrong!"
+        //         quizStartDiv.appendChild(rightOrWrong);
+        //         timeLeft = timeLeft - 10;
+        //     }  
+        //     // quizHeader.textContent = "What is your birthday?";
+        //     // answerOne.textContent = "3/28/1995";
+        //     // answerTwo.textContent = "7/24/1995";
+        //     // answerThree.textContent = "1/5/1995";
+        //     // answerFour.textContent = "10/6/2007";
+        //     });
+        // }
+
+        // answerTwoFunction(answerOne);
+        // answerTwoFunction(answerTwo);
+        // answerTwoFunction(answerThree);
+        // answerTwoFunction(answerFour);
         
 
     </script>
