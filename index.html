@@ -47,6 +47,7 @@
         var hr = document.createElement('hr');
         var rightOrWrong = document.createElement('p');
         var rightAnswers = ["alerts", "parentheses"];
+        var questionsCount = 0;
         var timeLeft = 100;
 
         // this allows you to click on "view highscores" and view the high scores.
@@ -79,11 +80,9 @@
             quizTimer();
             quizPrompt.remove();
             quizStartButton.remove();
-            quizHeader.textContent = "Commonly used data types DO NOT include:";
-            answerOne.textContent = "strings";
-            answerTwo.textContent = "booleans";
-            answerThree.textContent = "alerts";
-            answerFour.textContent = "numbers";
+            functionQuestionOne();
+            questionsCount = 1;
+            console.log(questionsCount);
             answerOneDiv.appendChild(answerOne);
             answerTwoDiv.appendChild(answerTwo);
             answerThreeDiv.appendChild(answerThree);
@@ -92,7 +91,9 @@
 
         function answerFunction(items){
             items.addEventListener('click', function(event){
-            if (items.textContent === "alerts" || items.textContent === "parentheses"){
+            questionsCount++
+            console.log(questionsCount);
+            if (items.textContent === "alerts" || items.textContent === "parentheses" || items.textContent === "all of the above" || items.textContent === "quotes" || items.textContent === "console log"){
                 quizStartDiv.appendChild(hr);
                 rightOrWrong.textContent = "Right!"
                 quizStartDiv.appendChild(rightOrWrong);
@@ -101,22 +102,33 @@
                 rightOrWrong.textContent = "Wrong!"
                 quizStartDiv.appendChild(rightOrWrong);
                 timeLeft = timeLeft - 10;
-            }  
+            }
+            if (questionsCount === 2){
             functionQuestionTwo();
+            }
+            else if (questionsCount === 3){
+            functionQuestionThree();
+            }
+            else if (questionsCount === 4){
+            functionQuestionFour();
+            }
+            else if (questionsCount === 5){
+            functionQuestionFive();
+            }
             });
         }
-
+        
         answerFunction(answerOne);
         answerFunction(answerTwo);
         answerFunction(answerThree);
         answerFunction(answerFour);
 
         function functionQuestionOne(){
-            quizHeader.textContent = "The condition in an if/else statement is enclosed within _________";
-            answerOne.textContent = "quotes";
-            answerTwo.textContent = "curly brackets";
-            answerThree.textContent = "parentheses";
-            answerFour.textContent = "square brackets";
+            quizHeader.textContent = "Commonly used data types DO NOT include:";
+            answerOne.textContent = "strings";
+            answerTwo.textContent = "booleans";
+            answerThree.textContent = "alerts";
+            answerFour.textContent = "numbers";
         }
         function functionQuestionTwo(){
             quizHeader.textContent = "The condition in an if/else statement is enclosed within _________";
@@ -137,7 +149,7 @@
             answerOne.textContent = "commas";
             answerTwo.textContent = "curly brackets";
             answerThree.textContent = "quotes";
-            answerFour.textContent = "parentheses";
+            answerFour.textContent = "forward slashes";
         }
         function functionQuestionFive(){
             quizHeader.textContent = "A very useful tool used during development and debugging for printing content to the debugger is:";
