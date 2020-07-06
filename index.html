@@ -12,10 +12,18 @@
         <div class="container">
             <div id="quizStart" style="clear: both; text-align: center;">
                 <br><br><br>
-                <h1 id="quizHeader">Coding Quiz Challenge</h1>
-                <p id="quizPrompt">This is a coding quiz. You'll be timed.</p>
+                <div id="headerAndPrompt">
+                    <h1 id="quizHeader">Coding Quiz Challenge</h1>
+                    <p id="quizPrompt">This is a coding quiz. You'll be timed.</p>
+                    <div id="finalScore"></div>
+                    <div>
+                        <div id="enterInitials"></div>
+                        <div id="enterInitialsText"></div>
+                        <div id="enterInitialsButton"></div>
+                    </div>
+                </div>
                 <button id="startButton">Start Quiz</button>
-                <div>
+                <div id="buttonsDiv">
                     <div id="answerOneDiv"></div>
                     <br>
                     <div id="answerTwoDiv"></div>
@@ -40,15 +48,29 @@
         var answerTwoDiv = document.querySelector('#answerTwoDiv');
         var answerThreeDiv = document.querySelector('#answerThreeDiv');
         var answerFourDiv = document.querySelector('#answerFourDiv');
+        var buttonsDiv = document.querySelector('#buttonsDiv');
+        var headerAndPrompt = document.querySelector('#headerAndPrompt');
+        var finalScoreDiv = document.querySelector('#finalScore');
         var answerOne = document.createElement('button');
         var answerTwo = document.createElement('button');
         var answerThree = document.createElement('button');
         var answerFour = document.createElement('button');
         var hr = document.createElement('hr');
         var rightOrWrong = document.createElement('p');
-        var rightAnswers = ["alerts", "parentheses"];
+        var finalScore = document.createElement('p');
+
+        //var enterInitialsForm = document.createElement('div');
+
+        var enterInitialsDiv = document.querySelector('#enterInitials');
+        var enterInitials = document.createElement('p');
+        var enterInitialsTextDiv = document.querySelector('#enterInitialsText');
+        var enterInitialsText = document.createElement('input');
+        var enterInitialsButtonDiv = document.querySelector('#enterInitialsButton');
+        var enterInitialsButton = document.createElement('button');
+
         var questionsCount = 0;
         var timeLeft = 100;
+
 
         // this allows you to click on "view highscores" and view the high scores.
         viewHighscores.addEventListener('click', function(event){
@@ -60,6 +82,7 @@
         
         // when the wrong answer is chosen, 10 seconds is taken off the timer.
         
+
         function quizTimer() {
             timeLeft = 100;
             var timeInterval = setInterval(countDown, 1000);
@@ -72,9 +95,13 @@
                     timerEl.textContent = "Time Left: 0";
                     clearInterval(timeInterval);
                 }
+                if (questionsCount === 6) {
+                    clearInterval(timeInterval);
+                }
+
             }
         }
-        
+
         // When the "Start Quiz" button is pressed, the timer starts.
         quizStartButton.addEventListener('click', function(event){
             quizTimer();
@@ -89,11 +116,11 @@
             answerFourDiv.appendChild(answerFour);
         });
 
-        function answerFunction(items){
-            items.addEventListener('click', function(event){
+        function answerFunction(answers){
+            answers.addEventListener('click', function(event){
             questionsCount++
             console.log(questionsCount);
-            if (items.textContent === "alerts" || items.textContent === "parentheses" || items.textContent === "all of the above" || items.textContent === "quotes" || items.textContent === "console log"){
+            if (answers.textContent === "alerts" || answers.textContent === "parentheses" || answers.textContent === "all of the above" || answers.textContent === "quotes" || answers.textContent === "console log"){
                 quizStartDiv.appendChild(hr);
                 rightOrWrong.textContent = "Right!"
                 quizStartDiv.appendChild(rightOrWrong);
@@ -115,6 +142,9 @@
             else if (questionsCount === 5){
             functionQuestionFive();
             }
+            else if (questionsCount === 6){
+            functionSubmitScore();
+            }
             });
         }
         
@@ -132,7 +162,7 @@
         }
         function functionQuestionTwo(){
             quizHeader.textContent = "The condition in an if/else statement is enclosed within _________";
-            answerOne.textContent = "quotes";
+            answerOne.textContent = "two forward slashes";
             answerTwo.textContent = "parentheses";
             answerThree.textContent = "curly brackets";
             answerFour.textContent = "square brackets";
@@ -159,32 +189,29 @@
             answerFour.textContent = "console log";
         }
 
+        function functionSubmitScore(){
+            quizHeader.textContent = "All done!";
+            finalScore.textContent = `Your final score is ${timeLeft}`;
+            buttonsDiv.remove();
+            
+            finalScoreDiv.append(finalScore);
+            
+            //headerAndPrompt.append(enterInitialsForm);
 
+            enterInitials.textContent = "Enter Initials:"
+            enterInitialsDiv.append(enterInitials);
+            
+            enterInitialsText.setAttribute('placeholder', "Enter Initials");
+            enterInitialsTextDiv.append(enterInitialsText);
 
-        // function answerTwoFunction(items){
-        //     items.addEventListener('click', function(event){
-        //     if (items.textContent === "parentheses"){
-        //         quizStartDiv.appendChild(hr);
-        //         rightOrWrong.textContent = "Right!"
-        //         quizStartDiv.appendChild(rightOrWrong);
-        //     } else {
-        //         quizStartDiv.appendChild(hr);
-        //         rightOrWrong.textContent = "Wrong!"
-        //         quizStartDiv.appendChild(rightOrWrong);
-        //         timeLeft = timeLeft - 10;
-        //     }  
-        //     // quizHeader.textContent = "What is your birthday?";
-        //     // answerOne.textContent = "3/28/1995";
-        //     // answerTwo.textContent = "7/24/1995";
-        //     // answerThree.textContent = "1/5/1995";
-        //     // answerFour.textContent = "10/6/2007";
-        //     });
-        // }
+            enterInitialsButton.textContent = "Submit";
+            enterInitialsButtonDiv.append(enterInitialsButton);
+        }
 
-        // answerTwoFunction(answerOne);
-        // answerTwoFunction(answerTwo);
-        // answerTwoFunction(answerThree);
-        // answerTwoFunction(answerFour);
+        var initialsButton = document.querySelector('#enterInitialsButton');
+        initialsButton.addEventListener('click', function(event){
+            console.log("TEST");
+        });
         
 
     </script>
