@@ -10,16 +10,16 @@
         <h1 id = "highscores" style="float: left;">View Highscores</h1>
         <h1 style="float: right;" id="timeLeft">Time Left: 0</h1>
         <div class="container">
-            <div id="quizStart" style="clear: both; text-align: center;">
+            <div id="quizStart" style="clear: both;">
                 <br><br><br>
                 <div id="headerAndPrompt">
                     <h1 id="quizHeader">Coding Quiz Challenge</h1>
                     <p id="quizPrompt">This is a coding quiz. You'll be timed.</p>
                     <div id="finalScore"></div>
                     <div>
-                        <div id="enterInitials"></div>
-                        <div id="enterInitialsText"></div>
-                        <div id="enterInitialsButton"></div>
+                        <div id="enterInitials" style="float: left;"></div>
+                        <div id="enterInitialsText" style="float: left;"></div>
+                        <div id="enterInitialsButton" style="float: left;"></div>
                     </div>
                 </div>
                 <button id="startButton">Start Quiz</button>
@@ -122,6 +122,7 @@
             console.log(questionsCount);
             if (answers.textContent === "alerts" || answers.textContent === "parentheses" || answers.textContent === "all of the above" || answers.textContent === "quotes" || answers.textContent === "console log"){
                 quizStartDiv.appendChild(hr);
+                hr.setAttribute('style', 'clear: both;')
                 rightOrWrong.textContent = "Right!"
                 quizStartDiv.appendChild(rightOrWrong);
             } else {
