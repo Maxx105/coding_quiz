@@ -22,6 +22,9 @@
                         <div id="enterInitialsButton" style="float: left;"></div>
                     </div>
                     <ol id="highscoresList"></ol>
+                    <form>
+                        <div id="goBackButton" style="float: left;"></div>
+                    </form>
                 </div>
                 <button id="startButton">Start Quiz</button>
                 <div id="buttonsDiv">
@@ -54,19 +57,18 @@
         var finalScoreDiv = document.querySelector('#finalScore');
         var submitInitials = document.querySelector('#submitInitials');
         var highscoresList = document.querySelector('#highscoresList');
+        var goBackButtonDiv = document.querySelector('#goBackButton');
         var hrDiv = document.querySelector('#hrDiv');
         var answerOne = document.createElement('button');
         var answerTwo = document.createElement('button');
         var answerThree = document.createElement('button');
         var answerFour = document.createElement('button');
+        var goBackButton = document.createElement('button');
+        var clearHighscoresButton = document.createElement('button');
         var hr = document.createElement('hr');
         var rightOrWrong = document.createElement('p');
         var finalScore = document.createElement('p');
-        var goBackButton = document.createElement('button');
-        var clearHighscoresButton = document.createElement('button');
         var highscoresListItem = document.createElement('li');
-        
-        //var enterInitialsForm = document.createElement('div');
 
         var enterInitialsDiv = document.querySelector('#enterInitials');
         var enterInitials = document.createElement('p');
@@ -221,9 +223,10 @@
             hr.remove();
             rightOrWrong.remove();
             quizStartButton.remove();
+            quizPrompt.remove();
             goBackButton.textContent = "Go Back";
             clearHighscoresButton.textContent = "Clear Highscores";
-            headerAndPrompt.appendChild(goBackButton);
+            goBackButtonDiv.appendChild(goBackButton);
             headerAndPrompt.appendChild(clearHighscoresButton);
         }
 
@@ -250,6 +253,7 @@
         initialsButton.addEventListener('click', function(event){
             functionHighscoresPage();
             highscoresList.appendChild(highscoresListItem);
+            highscoresListItem.setAttribute("style", "background-color: cyan;")
         });
         
 
