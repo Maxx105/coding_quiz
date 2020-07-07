@@ -10,17 +10,18 @@
         <h1 id = "highscores" style="float: left;">View Highscores</h1>
         <h1 style="float: right;" id="timeLeft">Time Left: 0</h1>
         <div class="container">
-            <div id="quizStart" style="clear: both;">
+            <div id="quizStart" style="clear: both; width: 50%; margin: auto;">
                 <br><br><br>
                 <div id="headerAndPrompt">
                     <h1 id="quizHeader">Coding Quiz Challenge</h1>
                     <p id="quizPrompt">This is a coding quiz. You'll be timed.</p>
                     <div id="finalScore"></div>
-                    <div>
+                    <div id="submitInitials">
                         <div id="enterInitials" style="float: left;"></div>
                         <div id="enterInitialsText" style="float: left;"></div>
                         <div id="enterInitialsButton" style="float: left;"></div>
                     </div>
+                    <ol id="highscoresList"></ol>
                 </div>
                 <button id="startButton">Start Quiz</button>
                 <div id="buttonsDiv">
@@ -32,6 +33,7 @@
                     <br>
                     <div id="answerFourDiv"></div>
                 </div>
+                <div id="hrDiv" style="clear: both;"></div>
             </div>
         </div>
 
@@ -43,7 +45,6 @@
         var quizStartDiv = document.querySelector('#quizStart');
         var quizHeader = document.querySelector('#quizHeader');
         var quizPrompt = document.querySelector('#quizPrompt');
-        var quizQuestionsDiv = document.querySelector('#quizQuestions');
         var answerOneDiv = document.querySelector('#answerOneDiv');
         var answerTwoDiv = document.querySelector('#answerTwoDiv');
         var answerThreeDiv = document.querySelector('#answerThreeDiv');
@@ -51,6 +52,9 @@
         var buttonsDiv = document.querySelector('#buttonsDiv');
         var headerAndPrompt = document.querySelector('#headerAndPrompt');
         var finalScoreDiv = document.querySelector('#finalScore');
+        var submitInitials = document.querySelector('#submitInitials');
+        var highscoresList = document.querySelector('#highscoresList');
+        var hrDiv = document.querySelector('#hrDiv');
         var answerOne = document.createElement('button');
         var answerTwo = document.createElement('button');
         var answerThree = document.createElement('button');
@@ -58,7 +62,10 @@
         var hr = document.createElement('hr');
         var rightOrWrong = document.createElement('p');
         var finalScore = document.createElement('p');
-
+        var goBackButton = document.createElement('button');
+        var clearHighscoresButton = document.createElement('button');
+        var highscoresListItem = document.createElement('li');
+        
         //var enterInitialsForm = document.createElement('div');
 
         var enterInitialsDiv = document.querySelector('#enterInitials');
@@ -70,14 +77,13 @@
 
         var questionsCount = 0;
         var timeLeft = 100;
+        var highscoreCount = 1;
+        
 
 
         // this allows you to click on "view highscores" and view the high scores.
         viewHighscores.addEventListener('click', function(event){
-            // var tag = document.createElement("p");
-            // tag.textContent = "These are the high scores!";
-            // quizStartDiv.appendChild(tag);
-            // go to high scores
+            functionHighscoresPage();
         });
         
         // when the wrong answer is chosen, 10 seconds is taken off the timer.
@@ -109,7 +115,7 @@
             quizStartButton.remove();
             functionQuestionOne();
             questionsCount = 1;
-            console.log(questionsCount);
+            //console.log(questionsCount);
             answerOneDiv.appendChild(answerOne);
             answerTwoDiv.appendChild(answerTwo);
             answerThreeDiv.appendChild(answerThree);
@@ -121,12 +127,11 @@
             questionsCount++
             console.log(questionsCount);
             if (answers.textContent === "alerts" || answers.textContent === "parentheses" || answers.textContent === "all of the above" || answers.textContent === "quotes" || answers.textContent === "console log"){
-                quizStartDiv.appendChild(hr);
-                hr.setAttribute('style', 'clear: both;')
-                rightOrWrong.textContent = "Right!"
+                hrDiv.appendChild(hr);
+                rightOrWrong.textContent = "Right!";
                 quizStartDiv.appendChild(rightOrWrong);
             } else {
-                quizStartDiv.appendChild(hr);
+                hrDiv.appendChild(hr);
                 rightOrWrong.textContent = "Wrong!"
                 quizStartDiv.appendChild(rightOrWrong);
                 timeLeft = timeLeft - 10;
@@ -190,6 +195,38 @@
             answerFour.textContent = "console log";
         }
 
+        // var count = localStorage.getItem("count");
+
+        // counter.textContent = count;
+
+        // addButton.addEventListener("click", function() {
+        // count++;
+        // counter.textContent = count;
+
+        // localStorage.setItem("count", count);
+        // });
+
+        // subtractButton.addEventListener("click", function() {
+        // count--;
+        // counter.textContent = count;
+
+        // localStorage.setItem("count", count);
+        // });
+
+        function functionHighscoresPage(){
+            quizHeader.textContent = "Highscores!"; 
+            highscoresListItem.textContent = `${enterInitialsText.value} - ${timeLeft + 1}`;
+            finalScore.remove();
+            submitInitials.remove();
+            hr.remove();
+            rightOrWrong.remove();
+            quizStartButton.remove();
+            goBackButton.textContent = "Go Back";
+            clearHighscoresButton.textContent = "Clear Highscores";
+            headerAndPrompt.appendChild(goBackButton);
+            headerAndPrompt.appendChild(clearHighscoresButton);
+        }
+
         function functionSubmitScore(){
             quizHeader.textContent = "All done!";
             finalScore.textContent = `Your final score is ${timeLeft}`;
@@ -211,7 +248,8 @@
 
         var initialsButton = document.querySelector('#enterInitialsButton');
         initialsButton.addEventListener('click', function(event){
-            console.log("TEST");
+            functionHighscoresPage();
+            highscoresList.appendChild(highscoresListItem);
         });
         
 
