@@ -21,7 +21,7 @@
                         <div id="enterInitialsText" style="float: left;"></div>
                         <div id="enterInitialsButton" style="float: left;"></div>
                     </div>
-                    <ol id="highscoresList"></ol>
+                    <ol id="highscoresList" style="clear: both;"></ol>
                     <form>
                         <div id="goBackButton" style="float: left;"></div>
                     </form>
@@ -69,6 +69,7 @@
         var rightOrWrong = document.createElement('p');
         var finalScore = document.createElement('p');
         var highscoresListItem = document.createElement('li');
+        
 
         var enterInitialsDiv = document.querySelector('#enterInitials');
         var enterInitials = document.createElement('p');
@@ -80,17 +81,36 @@
         var questionsCount = 0;
         var timeLeft = 100;
         var highscoreCount = 1;
+
+        var scoreArray = [];
+        var scoreStorage = JSON.parse(localStorage.getItem('score'));
+        console.log(scoreStorage);
         
 
 
         // this allows you to click on "view highscores" and view the high scores.
         viewHighscores.addEventListener('click', function(event){
             functionHighscoresPage();
+            if (scoreStorage === null){
+                scoreArray[0] = highscoresListItem.textContent;
+            } else {
+                scoreArray = scoreStorage;
+                scoreArray.push(highscoresListItem.textContent);
+            }
+            for (var i = 0; i < scoreArray.length - 1; i++){
+                highscoresListItem = document.createElement('li');
+                highscoresListItem.textContent = scoreArray[i];
+                highscoresList.appendChild(highscoresListItem);
+                highscoresListItem.setAttribute("style", "background-color: cyan;");
+            } 
+        });
+
+        clearHighscoresButton.addEventListener('click', function(event){
+            window.localStorage.clear();
+            highscoresList.remove();
         });
         
         // when the wrong answer is chosen, 10 seconds is taken off the timer.
-        
-
         function quizTimer() {
             timeLeft = 100;
             var timeInterval = setInterval(countDown, 1000);
@@ -196,28 +216,9 @@
             answerThree.textContent = "for loops";
             answerFour.textContent = "console log";
         }
-
-        // var count = localStorage.getItem("count");
-
-        // counter.textContent = count;
-
-        // addButton.addEventListener("click", function() {
-        // count++;
-        // counter.textContent = count;
-
-        // localStorage.setItem("count", count);
-        // });
-
-        // subtractButton.addEventListener("click", function() {
-        // count--;
-        // counter.textContent = count;
-
-        // localStorage.setItem("count", count);
-        // });
-
+        
         function functionHighscoresPage(){
             quizHeader.textContent = "Highscores!"; 
-            highscoresListItem.textContent = `${enterInitialsText.value} - ${timeLeft + 1}`;
             finalScore.remove();
             submitInitials.remove();
             hr.remove();
@@ -228,6 +229,7 @@
             clearHighscoresButton.textContent = "Clear Highscores";
             goBackButtonDiv.appendChild(goBackButton);
             headerAndPrompt.appendChild(clearHighscoresButton);
+
         }
 
         function functionSubmitScore(){
@@ -249,13 +251,33 @@
             enterInitialsButtonDiv.append(enterInitialsButton);
         }
 
-        var initialsButton = document.querySelector('#enterInitialsButton');
-        initialsButton.addEventListener('click', function(event){
-            functionHighscoresPage();
-            highscoresList.appendChild(highscoresListItem);
-            highscoresListItem.setAttribute("style", "background-color: cyan;")
-        });
         
+        enterInitialsButtonDiv.addEventListener('click', function(event){
+            
+            //highscoresList.appendChild(highscoresListItem);
+            highscoresListItem.textContent = `${enterInitialsText.value} - ${timeLeft + 1}`;
+
+            //console.log(scoreArray);
+            
+            if (scoreStorage === null){
+                scoreArray[0] = highscoresListItem.textContent;
+            } else {
+                scoreArray = scoreStorage;
+                scoreArray.push(highscoresListItem.textContent);
+            }
+            for (var i = 0; i < scoreArray.length; i++){
+                highscoresListItem = document.createElement('li');
+                highscoresListItem.textContent = scoreArray[i];
+                highscoresList.appendChild(highscoresListItem);
+                highscoresListItem.setAttribute("style", "background-color: cyan;");
+                console.log(highscoresListItem.textContent);
+            } 
+
+            localStorage.setItem('score', JSON.stringify(scoreArray));
+            
+            functionHighscoresPage();
+            
+        });
 
     </script>
 </html>
