@@ -190,7 +190,7 @@ function functionHighscoresPage(){
     clearHighscoresButton.textContent = "Clear Highscores";
     goBackButtonDiv.appendChild(goBackButton);
     headerAndPrompt.appendChild(clearHighscoresButton);
-
+    viewHighscores.remove();
 }
 
 // this function displays the final score as well as the text box and submit button when the quiz is over.
