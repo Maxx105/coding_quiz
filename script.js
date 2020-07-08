@@ -59,7 +59,7 @@ viewHighscores.addEventListener('click', function(event){
         highscoresListItem = document.createElement('li');
         highscoresListItem.textContent = scoreArray[i];
         highscoresList.appendChild(highscoresListItem);
-        highscoresListItem.setAttribute("style", "background-color: cyan;");
+        highscoresList.setAttribute("style", "background-color: cyan;");
     } 
 });
 
@@ -227,7 +227,7 @@ enterInitialsButtonDiv.addEventListener('click', function(event){
         highscoresListItem = document.createElement('li');
         highscoresListItem.textContent = scoreArray[i];
         highscoresList.appendChild(highscoresListItem);
-        highscoresListItem.setAttribute("style", "background-color: cyan;");
+        highscoresList.setAttribute("style", "background-color: cyan;");
         console.log(highscoresListItem.textContent);
     } 
 
