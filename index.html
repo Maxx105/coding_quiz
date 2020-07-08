@@ -7,9 +7,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     </head>
     <body>
-        <h1 id = "highscores" style="float: left;">View Highscores</h1>
-        <h1 style="float: right;" id="timeLeft">Time Left: 0</h1>
         <div class="container">
+            <h1 id = "highscores" style="float: left;">View Highscores</h1>
+            <h1 style="float: right;" id="timeLeft">Time Left: 0</h1>
             <div id="quizStart" style="clear: both; width: 50%; margin: auto;">
                 <br><br><br>
                 <div id="headerAndPrompt">
@@ -90,6 +90,7 @@
 
         // this allows you to click on "view highscores" and view the high scores.
         viewHighscores.addEventListener('click', function(event){
+            buttonsDiv.remove();
             functionHighscoresPage();
             if (scoreStorage === null){
                 scoreArray[0] = highscoresListItem.textContent;
