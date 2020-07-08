@@ -81,6 +81,7 @@ function quizTimer() {
         if (timeLeft <= 0) {
             timerEl.textContent = "Time Left: 0";
             clearInterval(timeInterval);
+            functionSubmitScore();
         }
         if (questionsCount === 6) {
             clearInterval(timeInterval);
