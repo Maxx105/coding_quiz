@@ -10,33 +10,35 @@
         <div class="container">
             <h1 id = "highscores" style="float: left;">View Highscores</h1>
             <h1 style="float: right;" id="timeLeft">Time Left: 0</h1>
-            <div id="quizStart" style="clear: both; width: 50%; margin: auto;">
-                <br><br><br>
-                <div id="headerAndPrompt">
-                    <h1 id="quizHeader">Coding Quiz Challenge</h1>
-                    <p id="quizPrompt">This is a coding quiz. You have 100 seconds to complete 5 questions. If you get a question incorrect, 10 seconds will be deducted from your time remaining. At the conclusion of the quiz, your score will be your remaining time. Good luck!</p>
-                    <div id="finalScore"></div>
-                    <div id="submitInitials">
-                        <div id="enterInitials" style="float: left;"></div>
-                        <div id="enterInitialsText" style="float: left;"></div>
-                        <div id="enterInitialsButton" style="float: left;"></div>
+            <div class="jumbotron">
+                <div id="quizStart" style="clear: both; width: 50%; margin: auto;">
+                    <br><br><br>
+                    <div id="headerAndPrompt">
+                        <h1 class="display-4" id="quizHeader">Coding Quiz Challenge</h1>
+                        <p class="lead" id="quizPrompt">This is a coding quiz. You have 100 seconds to complete 5 questions. If you get a question incorrect, 10 seconds will be deducted from your time remaining. At the conclusion of the quiz, your score will be your remaining time. Good luck!</p>
+                        <div id="finalScore"></div>
+                        <div id="submitInitials">
+                            <div id="enterInitials" style="float: left;"></div>
+                            <div id="enterInitialsText" style="float: left;"></div>
+                            <div id="enterInitialsButton" style="float: left;"></div>
+                        </div>
+                        <ol id="highscoresList" style="clear: both;"></ol>
+                        <form>
+                            <div id="goBackButton" style="float: left;"></div>
+                        </form>
                     </div>
-                    <ol id="highscoresList" style="clear: both;"></ol>
-                    <form>
-                        <div id="goBackButton" style="float: left;"></div>
-                    </form>
+                    <button id="startButton">Start Quiz</button>
+                    <div id="buttonsDiv">
+                        <div id="answerOneDiv"></div>
+                        <br>
+                        <div id="answerTwoDiv"></div>
+                        <br>
+                        <div id="answerThreeDiv"></div>
+                        <br>
+                        <div id="answerFourDiv"></div>
+                    </div>
+                    <div id="hrDiv" style="clear: both;"></div>
                 </div>
-                <button id="startButton">Start Quiz</button>
-                <div id="buttonsDiv">
-                    <div id="answerOneDiv"></div>
-                    <br>
-                    <div id="answerTwoDiv"></div>
-                    <br>
-                    <div id="answerThreeDiv"></div>
-                    <br>
-                    <div id="answerFourDiv"></div>
-                </div>
-                <div id="hrDiv" style="clear: both;"></div>
             </div>
         </div>
 
